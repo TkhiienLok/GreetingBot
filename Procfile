@@ -1,1 +1,1 @@
-web: gunicorn greet_bot.py
+web: gunicorn run_app:app --preload
