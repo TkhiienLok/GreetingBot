@@ -10,7 +10,7 @@ Day is devided into three periods:
 You can greet bot just in Russian and English.
 
 Some examples:
-
+```
 User (7:45):  Hey, buddy! 
 Bot: Good morning, <User>
 
@@ -36,4 +36,5 @@ User (15:01):  Я веду здоровый образ жизни.
 Bot: Я умею только здороваться
 
 User (15:02):  Доброго ранку і гарного дня 
-Bot: For now, I can understand only English and Russian
+Bot: For now, I can understand only English and Russian 
+```
