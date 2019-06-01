@@ -53,7 +53,7 @@ en_alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 greet_bot = BotHandler('716926010:AAExHWbqTeVcoaTvwN7qSqide8vLwN0Wd4s') 
 
-ru_greetings = ('здравствуй', 'привет', 'ку', 'здоров','здрасте','куку', 'здр','здаров')  #Russian greeting words 
+ru_greetings = ('здравствуй', 'привет', 'ку', 'здоров','здрасте','куку', 'здр','здаров','кукусики')  #Russian greeting words 
 en_greetings = ('hello', 'hi', 'hey', 'whatsup')  # English greeting words
 
 now = datetime.datetime.now()
@@ -113,7 +113,7 @@ def main():
             elif last_chat_text.lower()[0] in en_alphabet:
                 greet_bot.send_message(last_chat_id, 'The only thing I can do is to greet people')
             else:
-                greet_bot.send_message(last_chat_id, 'For now, I only understand English and Russion')
+                greet_bot.send_message(last_chat_id, 'For now, I only understand English and Russian')
             new_offset = last_update_id + 1
             continue
 
