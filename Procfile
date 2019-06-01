@@ -1,0 +1,1 @@
+web: gunicorn greet_bot:app --preload
