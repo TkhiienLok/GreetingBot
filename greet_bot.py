@@ -2,6 +2,8 @@ import requests
 import datetime
 import re
 import string
+import time
+
 
 class BotHandler:
 
@@ -35,19 +37,19 @@ class BotHandler:
     def greet_user(self,nowdata, chat_id, name, greetings):
         today = nowdata.day
         hour = nowdata.hour
+        localTime = time.localtime()
 
         # check day time and send greeting
         if today == nowdata.day and 0 <= hour < 12:
-            greet_bot.send_message(chat_id, '{}, {}'.format(greetings[0].capitalize(), name))
+            greet_bot.send_message(chat_id, '{}, {} | {}'.format(greetings[0].capitalize(), name, localTime ))
 
         elif today == nowdata.day and 12 <= hour < 17:
-            greet_bot.send_message(chat_id, '{}, {}'.format(greetings[1].capitalize(), name))
+            greet_bot.send_message(chat_id, '{}, {} | {}'.format(greetings[1].capitalize(), name, localTime ))
 
         elif today == nowdata.day and 17 <= hour <= 23:
-            greet_bot.send_message(chat_id, '{}, {}'.format(greetings[2].capitalize(), name))
+            greet_bot.send_message(chat_id, '{}, {} | {}'.format(greetings[2].capitalize(), name, localTime ))
 
-
-        
+                
 ru_alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 en_alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
