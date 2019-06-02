@@ -149,7 +149,6 @@ def remove_extra(text):
         
 
 def main():  
-    #chat.new_offset = None
     chat.time_offset = chat.set_time_offset(greet_bot)
     print('time offset', chat.time_offset)
     
