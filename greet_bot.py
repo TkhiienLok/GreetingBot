@@ -176,9 +176,9 @@ def main():
 
         # if user sent message with no greeting            
         if not user_greeted:
-            if user_message_words[0] in ru_alphabet:
+            if user_message_words[0][0] in ru_alphabet:
                 greet_bot.send_message(last_chat_id, 'Я умею только здороваться на русском и английском')
-            elif user_message_words[0] in en_alphabet:
+            elif user_message_words[0][0] in en_alphabet:
                 greet_bot.send_message(last_chat_id, 'The only thing I can do is to greet people in Russian and English')
             else:
                 greet_bot.send_message(last_chat_id, 'For now, I only understand English and Russian')
