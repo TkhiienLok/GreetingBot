@@ -84,12 +84,10 @@ def check_zone(zone_text):
     print(tz_parts)
 
     time_zone_words = None
-    for tz in pytz.all_timezones:   # defining time zone from library
-        right_tz = True
-        for part in tz_parts:
-            if not (part in tz.lower()):
-                right_tz = False
-        if right_tz:
+    for tz in pytz.all_timezones:   # defining time zone from pytz library
+        current_tz = re.split(r'[{}]'.format(string.punctuation), tz.lower())
+        current_tz_parts = ' '.join(current_tz).split()
+        if current_tz_parts == tz_parts:
             time_zone_words = tz
     return time_zone_words
 
@@ -152,6 +150,7 @@ def main():
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
+        last_chat_surname = last_update['message']['chat']['last_name']
 
         all_rus_phrases = ru_greetings + ru_bot_greetings
         all_eng_phrases = en_greetings + en_bot_greetings
@@ -177,9 +176,9 @@ def main():
 
         # if user sent message with no greeting            
         if not user_greeted:
-            if last_chat_text.lower()[0] in ru_alphabet:
+            if user_message_words[0] in ru_alphabet:
                 greet_bot.send_message(last_chat_id, 'Я умею только здороваться на русском и английском')
-            elif last_chat_text.lower()[0] in en_alphabet:
+            elif user_message_words[0] in en_alphabet:
                 greet_bot.send_message(last_chat_id, 'The only thing I can do is to greet people in Russian and English')
             else:
                 greet_bot.send_message(last_chat_id, 'For now, I only understand English and Russian')
