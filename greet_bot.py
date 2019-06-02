@@ -2,7 +2,10 @@ import requests
 import datetime
 import re
 import string
-import time
+import datetime
+from time_zone_bot import Bot
+
+
 
 
 class BotHandler:
@@ -34,26 +37,26 @@ class BotHandler:
 
         return last_update
     
-    def greet_user(self,nowdata, chat_id, name, greetings):
+    def greet_user(self,nowdata, chat_id, name, greetings,offset_time):
         today = nowdata.day
-        hour = nowdata.hour
-        localTime = time.localtime()
+        hour = nowdata.hour + offset_time
 
         # check day time and send greeting
         if today == nowdata.day and 0 <= hour < 12:
-            greet_bot.send_message(chat_id, '{}, {} | {}'.format(greetings[0].capitalize(), name, localTime ))
+            greet_bot.send_message(chat_id, '{}, {}'.format(greetings[0].capitalize(), name))
 
         elif today == nowdata.day and 12 <= hour < 17:
-            greet_bot.send_message(chat_id, '{}, {} | {}'.format(greetings[1].capitalize(), name, localTime ))
+            greet_bot.send_message(chat_id, '{}, {}'.format(greetings[1].capitalize(), name))
 
         elif today == nowdata.day and 17 <= hour <= 23:
-            greet_bot.send_message(chat_id, '{}, {} | {}'.format(greetings[2].capitalize(), name, localTime ))
+            greet_bot.send_message(chat_id, '{}, {}'.format(greetings[2].capitalize(), name))
 
                 
 ru_alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 en_alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-greet_bot = BotHandler('716926010:AAExHWbqTeVcoaTvwN7qSqide8vLwN0Wd4s') 
+TOKEN = '716926010:AAExHWbqTeVcoaTvwN7qSqide8vLwN0Wd4s'
+greet_bot = BotHandler(TOKEN) 
 
 ru_greetings = ('здравствуй', 'привет', 'ку', 'здоров','здрасте','куку', 'здр','здаров','кукусики')  #Russian greeting words 
 en_greetings = ('hello', 'hi', 'hey', 'whatsup')  # English greeting words
@@ -75,6 +78,9 @@ def remove_extra(text):
 
 def main():  
     new_offset = None
+
+    a = Bot(TOKEN)
+    offcet = a.run()
 
     while True:
         greet_bot.get_updates(new_offset)
@@ -120,7 +126,7 @@ def main():
             continue
 
         # greet user
-        greet_bot.greet_user(now, last_chat_id, last_chat_name, bot_greetings)
+        greet_bot.greet_user(now, last_chat_id, last_chat_name, bot_greetings,offcet)
         new_offset = last_update_id + 1
 
 if __name__ == '__main__':  
