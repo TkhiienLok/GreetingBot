@@ -56,7 +56,7 @@ class BotHandler:
 ru_alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
 en_alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-TOKEN = '716926010:AAExHWbqTeVcoaTvwN7qSqide8vLwN0Wd4s'
+TOKEN = ''
 greet_bot = BotHandler(TOKEN)
 chat = Chat(greet_bot)
 
